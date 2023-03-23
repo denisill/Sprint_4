@@ -1,14 +1,15 @@
 import model.MainPage;
 import model.OrderPage;
 import org.junit.After;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
 import io.github.bonigarcia.wdm.WebDriverManager;
+import org.openqa.selenium.firefox.FirefoxDriver;
 
 @RunWith(Parameterized.class)
 public class OrderScooterTest {
@@ -67,8 +68,8 @@ public class OrderScooterTest {
         orderPage.setFieldsBlockAboutRent(date, rentPeriod, color, comment);
         orderPage.clickOrderButton();
         orderPage.clickConfirmOrderButton();
-        orderPage.checkOrderStatusDisplayed();
-        orderPage.checkStatusButtonDisplayed();
+        Assert.assertTrue(orderPage.isOrderStatusDisplayed());
+        Assert.assertTrue(orderPage.isStatusButtonDisplayed());
     }
 
     @After

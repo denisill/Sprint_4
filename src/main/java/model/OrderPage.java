@@ -5,8 +5,6 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-import static org.junit.Assert.*;
-
 public class OrderPage {
 
     private WebDriver driver;
@@ -140,17 +138,17 @@ public class OrderPage {
     }
 
     //Проверка отображения кнопки "посмотреть статус"
-    public void checkStatusButtonDisplayed() {
+    public boolean isStatusButtonDisplayed() {
         new WebDriverWait(driver, 10)
                 .until(ExpectedConditions.visibilityOf(driver.findElement(checkStatusButton)));
-        assertTrue(driver.findElement(checkStatusButton).isDisplayed());
+        return driver.findElement(checkStatusButton).isDisplayed();
     }
 
     //проверка отображения текста "заказ оформлен"
-    public void checkOrderStatusDisplayed() {
+    public boolean isOrderStatusDisplayed() {
         new WebDriverWait(driver, 10)
                 .until(ExpectedConditions.visibilityOf(driver.findElement(checkOrderStatus)));
-        assertTrue(driver.findElement(checkOrderStatus).isDisplayed());
+        return driver.findElement(checkOrderStatus).isDisplayed();
     }
 
     //Объединяем в шаг заполнение полей блока "для кого самокат"

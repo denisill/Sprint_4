@@ -4,8 +4,6 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
-import static org.junit.Assert.assertTrue;
-
 public class MainPage {
 
     private WebDriver driver;
@@ -44,26 +42,17 @@ public class MainPage {
     }
 
     //Проверка, что соответствующий выпадающий список отображается
-    public void checkAccordionItemPanelDisplayed(int index) {
+    public boolean isAccordionItemPanelDisplayed(int index) {
         WebElement accordionItemPanel = driver.findElements(accordionItems).get(index)
                 .findElement(By.xpath(".//div[@class='accordion__panel']"));
 
-        assertTrue(accordionItemPanel.isDisplayed());
+        return accordionItemPanel.isDisplayed();
     }
 
-    //Проверка, что текст в выпадающем списке соответствует ожидаемому
-    public void checkAccordionItemText(int index, String expectedText) {
-        String accordionItemText = driver.findElements(accordionItems).get(index)
+    //Получаем текст из выпадающего списка
+    public String getAccordionItemText(int index) {
+        return driver.findElements(accordionItems).get(index)
                 .findElement(By.xpath(".//div[@class='accordion__panel']/p"))
                 .getText();
-
-        assertTrue(accordionItemText.equals(expectedText));
-    }
-
-    //Объединяем в шаг, проверка что выпадающий список отображается и текст соответствует
-    public void checkAccordionItemOpenAndShowExpectedText(int index, String expectedText) {
-        clickAccordionItem(index);
-        checkAccordionItemPanelDisplayed(index);
-        checkAccordionItemText(index, expectedText);
     }
 }
